@@ -1,5 +1,17 @@
 import mongoose from "mongoose";
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
+
+const jobSchema = new mongoose.Schema({
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Job",
+  },
+  status: {
+    type: String,
+    enum: ["pending", "accepted", "rejected", "review"],
+    default: "review",
+  },
+});
 
 const employeeSchema = new mongoose.Schema(
   {
@@ -96,10 +108,7 @@ const employeeSchema = new mongoose.Schema(
     resumeLink: {
       type: String,
     },
-    appliedJobs: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Job",
-    },
+    appliedJobs: [jobSchema],
   },
   {
     timestamps: true,

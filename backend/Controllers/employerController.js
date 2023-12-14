@@ -1,7 +1,9 @@
 import asyncHandler from "../Config/asyncHandler.js";
-import Employer from "../Models/employerModel.js";
-
 import jwt from "jsonwebtoken";
+
+import Employer from "../Models/employerModel.js";
+import Job from "../Models/jobModel.js";
+import Employee from "../Models/employeeModel.js";
 
 // Register new employer
 export const registerUser = asyncHandler(async (req, res) => {
@@ -59,5 +61,47 @@ export const loginUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(401).json({ sts: "00", msg: "Invalid credentials" });
+  }
+});
+
+// Manage job applications (Accept/Reject/Pending/review)
+export const manageApplication = asyncHandler(async (req, res) => {
+  const { jobId, managed, employeeId } = req.body;
+
+  const job = await Job.findById(jobId);
+  const employee = await Employee.findById(employeeId);
+
+  if (job) {
+    // Update status in job model
+    job.peopleApplied &&
+      job.peopleApplied.map((application) => {
+        if (application._id == employeeId) {
+          application.status = managed;
+        } else {
+          res.status(401).json({ sts: "00", msg: "Can't find application!" });
+        }
+      });
+    const updatedJob = await job.save();
+
+    // Update status in employee model
+    if (updatedJob) {
+      employee.appliedJobs.map((jobs) => {
+        if (jobs._id == jobId) {
+          jobs.status = managed;
+        } else {
+          res.status(401).json({ sts: "00", msg: "Can't find job" });
+        }
+      });
+    } else {
+      res.status(401).json({ sts: "00", msg: "Some error occured!" });
+    }
+
+    const updatedEmployee = await employee.save();
+
+    if (updatedEmployee) {
+      res.status(201).json({ sts: "01", msg: "Status updated successfully!" });
+    }
+  } else {
+    res.status(401).json({ sts: "00", msg: "Job not found" });
   }
 });

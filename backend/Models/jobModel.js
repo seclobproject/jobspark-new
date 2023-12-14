@@ -1,5 +1,17 @@
 import mongoose from "mongoose";
 
+const applicationSchema = new mongoose.Schema({
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Employee",
+  },
+  status: {
+    type: String,
+    enum: ["pending", "accepted", "rejected", "review"],
+    default: "review",
+  },
+});
+
 const jobSchema = new mongoose.Schema(
   {
     company: {
@@ -51,12 +63,7 @@ const jobSchema = new mongoose.Schema(
       required: true,
     },
     keySkills: [String],
-    peopleApplied: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Employee",
-      },
-    ],
+    peopleApplied: [applicationSchema],
   },
   {
     timestamps: true,

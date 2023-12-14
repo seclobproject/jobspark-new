@@ -75,6 +75,7 @@ export const getJobs = asyncHandler(async (req, res) => {
     const employeeSkills = employee.keySkills;
     const lowercasedSkills = employeeSkills.map((skill) => skill.toLowerCase());
 
+    // Finding the jobs based on key skill priority
     const jobs = await Job.aggregate([
       {
         $addFields: {
@@ -109,6 +110,55 @@ export const getJobs = asyncHandler(async (req, res) => {
       res.status(401).json({
         sts: "00",
         msg: "No jobs found!",
+      });
+    }
+  } else {
+    res.status(401).json({
+      sts: "00",
+      msg: "User not found. Make sure that you are logged in!",
+    });
+  }
+});
+
+// Apply for a job
+export const applyForJob = asyncHandler(async (req, res) => {
+  const employeeId = req.employee._id;
+
+  const { appliedJobId } = req.body;
+
+  const employee = await Employee.findById(employeeId);
+  const jobApplying = await Job.findById(appliedJobId);
+
+
+  if (employee) {
+    employee.appliedJobs.map((jobs) => {
+      if (jobs._id == appliedJobId) {
+        res.status(401).json({
+          sts: "00",
+          msg: "You already applied for this job",
+        });
+      }
+    });
+
+    employee.appliedJobs.push(appliedJobId);
+
+    const updatedEmployee = await employee.save();
+
+    if (updatedEmployee) {
+      // Add the employee to job
+      jobApplying.peopleApplied.push(employee._id);
+      const updatedJob = await jobApplying.save();
+
+      if (updatedJob) {
+        res.status(201).json({
+          sts: "01",
+          msg: "Success",
+        });
+      }
+    } else {
+      res.status(401).json({
+        sts: "00",
+        msg: "Some error occured!",
       });
     }
   } else {
