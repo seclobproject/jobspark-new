@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
+
+
 
 const employerSchema = new mongoose.Schema(
   {
@@ -10,6 +12,12 @@ const employerSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
+    },
+    typeOfPackage: {
+      type: String,
+      reqired: true,
+      enum: ["free", "silver", "gold", "platinum"],
+      default: "free",
     },
     phone: {
       type: String,
