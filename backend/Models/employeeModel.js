@@ -1,18 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-const jobSchema = new mongoose.Schema({
-  _id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Job",
-  },
-  status: {
-    type: String,
-    enum: ["pending", "accepted", "rejected", "review"],
-    default: "review",
-  },
-});
-
 const workSchema = new mongoose.Schema({
   workingStatus: {
     type: String,
@@ -20,7 +8,8 @@ const workSchema = new mongoose.Schema({
   },
   companyName: String,
   location: String,
-  role: String,
+  designation: String,
+  roles: String,
   fromDate: {
     month: {
       type: Number,
@@ -47,6 +36,7 @@ const workSchema = new mongoose.Schema({
   },
 });
 
+
 const employeeSchema = new mongoose.Schema(
   {
     firstName: {
@@ -65,9 +55,17 @@ const employeeSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    password: {
+    streetAddress: {
       type: String,
-      required: true,
+    },
+    cityState: {
+      type: String,
+    },
+    pincode: {
+      type: String,
+    },
+    jobTitle: {
+      type: String,
     },
     district: {
       type: String,
@@ -75,6 +73,11 @@ const employeeSchema = new mongoose.Schema(
     gender: {
       type: String,
       enum: ["Male", "Female", "Other"],
+    },
+    address: {
+      streetAddress: String,
+      cityState: String,
+      pinCode: Number,
     },
     jobTitle: {
       type: String,
@@ -110,26 +113,25 @@ const employeeSchema = new mongoose.Schema(
     resumeLink: {
       type: String,
     },
-    appliedJobs: [jobSchema],
+    appliedJobs: [
+      {
+        _id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Job",
+        },
+        jobStatus: {
+          type: String,
+          enum: ["pending", "accepted", "rejected", "review"],
+          default: "review",
+        },
+      },
+    ],
   },
   {
     timestamps: true,
   }
 );
 
-employeeSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
-};
-
-// Doing encryption before saving to the database
-employeeSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
-    next();
-  }
-
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
-});
 
 const Employee = mongoose.model("Employee", employeeSchema);
 export default Employee;

@@ -1,17 +1,14 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-
-
 const employerSchema = new mongoose.Schema(
   {
     companyName: {
       type: String,
       required: true,
     },
-    email: {
-      type: String,
-      required: true,
+    companyAddress: {
+      type: String
     },
     typeOfPackage: {
       type: String,
@@ -20,10 +17,6 @@ const employerSchema = new mongoose.Schema(
       default: "free",
     },
     phone: {
-      type: String,
-      required: true,
-    },
-    password: {
       type: String,
       required: true,
     },

@@ -1,9 +1,13 @@
 import asyncHandler from "../Config/asyncHandler.js";
+import Employer from "../Models/employerModel.js";
 import Job from "../Models/jobModel.js";
 
 // Add a new job
 export const addJob = asyncHandler(async (req, res) => {
+
   const company = req.employer._id;
+
+  const employer = await Employer.findById(company);
 
   const {
     role,
@@ -22,6 +26,7 @@ export const addJob = asyncHandler(async (req, res) => {
 
   const newJob = await Job.create({
     company,
+    companyName: employer ? employer.companyName : null,
     role,
     description,
     openingsCount,
@@ -41,6 +46,7 @@ export const addJob = asyncHandler(async (req, res) => {
   } else {
     res.status(400);
   }
+
 });
 
 // Edit existing job

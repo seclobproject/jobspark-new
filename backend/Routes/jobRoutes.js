@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.route("/").post(protectEmployer , addJob);
 
-router.route("/edit/:id").post(protectEmployer,editJob);
-router.route("/delete/:id").post(protectEmployer,deleteJob);
+router.route("/edit/:id").put(protectEmployer,editJob);
+router.route("/delete/:id").delete(protectEmployer,deleteJob);
 
 export default router;
