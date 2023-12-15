@@ -16,7 +16,7 @@ const employerSchema = new mongoose.Schema(
     typeOfPackage: {
       type: String,
       reqired: true,
-      enum: ["free", "silver", "gold", "platinum"],
+      enum: ["free", "silver", "gold", "platinum", "expired"],
       default: "free",
     },
     phone: {

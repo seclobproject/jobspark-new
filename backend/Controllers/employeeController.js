@@ -168,3 +168,67 @@ export const applyForJob = asyncHandler(async (req, res) => {
     });
   }
 });
+
+
+// export const applyJob = asyncHandler(async (req, res) => {
+//   const employeeId = req.employee._id;
+//   console.log(employeeId);
+//   const jobId = req.params.id;
+//   const employee = await Employee.findById(employeeId);
+//   const jobArray = employee.appliedJobs;
+//   const job = await Job.findById(jobId);
+//   const employeeArray = job.peopleApplied;
+
+//   if (employee) {
+//     if (job) {
+//       const updateApplyJob = await Employee.findByIdAndUpdate(employeeId, {
+//         appliedJobs: [...jobArray, jobId],
+//       });
+//       if (updateApplyJob) {
+//         res.status(201).json({ msg: "job Applied." });
+//       } else {
+//         res.status(400);
+//       }
+//       const updateJobApplied = await Job.findByIdAndUpdate(jobId, {
+//         peopleApplied: [...employeeArray, employeeId],
+//       });
+//     } else {
+//       res.status(401).json({
+//         sts: "00",
+//         msg: "Job not found!",
+//       });
+//     }
+//   } else {
+//     res.status(401).json({
+//       sts: "00",
+//       msg: "User not found. Make sure that you are logged in!",
+//     });
+//   }
+// });
+
+// Get all the applied jobs to employee
+export const getAppliedJobs = asyncHandler(async (req, res) => {
+  const employeeId = req.employee._id;
+
+  const employee = await Employee.findById(employeeId)
+    .populate("appliedJobs")
+    .exec();
+
+  const appliedJobsArray = employee.appliedJobs;
+
+  if (employee) {
+    const simplifiedJobs = appliedJobsArray.map(
+      ({ role, company, description }) => ({
+        role,
+        company,
+        description,
+      })
+    );
+    res.status(201).json({ simplifiedJobs });
+  } else {
+    res.status(401).json({
+      sts: "00",
+      msg: "User not found. Make sure that you are logged in!",
+    });
+  }
+});

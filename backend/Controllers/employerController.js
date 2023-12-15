@@ -64,6 +64,25 @@ export const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+// Get the jobs posted to employer
+export const getJobs = asyncHandler(async (req, res) => {
+  
+  const company = req.employer._id;
+  const employeeJobs = await Job.find({ company: company });
+
+  if (employeeJobs && employeeJobs.length > 0) {
+    const simplifiedJobs = employeeJobs.map(({ role, company, description }) => ({
+      role,
+      company,
+      description,
+    }));
+
+    res.status(200).json({ employeeJobs: simplifiedJobs });
+  } else {
+    res.status(404).json({ message: "No jobs found for the given company." });
+  }
+});
+
 // Manage job applications (Accept/Reject/Pending/review)
 export const manageApplication = asyncHandler(async (req, res) => {
   const { jobId, managed, employeeId } = req.body;

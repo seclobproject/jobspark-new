@@ -13,6 +13,40 @@ const jobSchema = new mongoose.Schema({
   },
 });
 
+const workSchema = new mongoose.Schema({
+  workingStatus: {
+    type: String,
+    enum: ["experienced", "fresher", "student"],
+  },
+  companyName: String,
+  location: String,
+  role: String,
+  fromDate: {
+    month: {
+      type: Number,
+      min: 1,
+      max: 12,
+    },
+    year: {
+      type: Number,
+    },
+  },
+  toDate: {
+    month: {
+      type: Number,
+      min: 1,
+      max: 12,
+    },
+    year: {
+      type: Number,
+    },
+  },
+  currentStatus: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const employeeSchema = new mongoose.Schema(
   {
     firstName: {
@@ -54,39 +88,7 @@ const employeeSchema = new mongoose.Schema(
         specialisation: String,
       },
     ],
-    currentWorkDetails: {
-      status: {
-        type: String,
-        enum: ["experienced", "fresher", "student"],
-      },
-      companyName: String,
-      location: String,
-      role: String,
-      fromDate: {
-        month: {
-          type: Number,
-          min: 1,
-          max: 12,
-        },
-        year: {
-          type: Number,
-        },
-      },
-      toDate: {
-        month: {
-          type: Number,
-          min: 1,
-          max: 12,
-        },
-        year: {
-          type: Number,
-        },
-      },
-      currentStatus: {
-        type: Boolean,
-        default: false,
-      },
-    },
+    currentWorkDetails: [workSchema],
     currentSalary: {
       type: String,
     },
