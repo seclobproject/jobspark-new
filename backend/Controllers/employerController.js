@@ -46,20 +46,24 @@ export const addEmployer = asyncHandler(async (req, res) => {
 });
 
 // Get the jobs posted to employer
-export const getJobs = asyncHandler(async (req, res) => {
-  const company = req.employer._id;
-  const employeeJobs = await Job.find({ company: company });
+export const getCreatedJobs = asyncHandler(async (req, res) => {
+  const userEmail = req.user.email;
 
-  if (employeeJobs && employeeJobs.length > 0) {
-    const simplifiedJobs = employeeJobs.map(
-      ({ role, company, description }) => ({
+  const employer = await Employer.findOne({ email: userEmail });
+
+  const employerJobs = await Job.find({ company: employer._id });
+
+  if (employerJobs && employerJobs.length > 0) {
+    const simplifiedJobs = employerJobs.map(
+      ({ role, location, peopleApplied, createdAt }) => ({
         role,
-        company,
-        description,
+        location,
+        peopleApplied,
+        createdAt,
       })
     );
 
-    res.status(200).json({ employeeJobs: simplifiedJobs });
+    res.status(200).json(simplifiedJobs);
   } else {
     res.status(404).json({ message: "No jobs found for the given company." });
   }
@@ -74,25 +78,36 @@ export const manageApplication = asyncHandler(async (req, res) => {
 
   if (job) {
     // Update status in job model
+    let jobApplication = false;
+
     job.peopleApplied &&
       job.peopleApplied.map((application) => {
         if (application._id == employeeId) {
+          jobApplication = true;
           application.status = managed;
-        } else {
-          res.status(401).json({ sts: "00", msg: "Can't find application!" });
         }
       });
+
+    if (jobApplication == false) {
+      res.status(401).json({ sts: "00", msg: "Can't find application!" });
+    }
+
     const updatedJob = await job.save();
 
-    // Update status in employee model
     if (updatedJob) {
+      let jobInEmployeeSide = false;
+
       employee.appliedJobs.map((jobs) => {
+        
         if (jobs._id == jobId) {
-          jobs.status = managed;
-        } else {
-          res.status(401).json({ sts: "00", msg: "Can't find job" });
+          jobs.jobStatus = managed;
+          jobInEmployeeSide = true;
         }
       });
+
+      if (jobInEmployeeSide == false) {
+        res.status(401).json({ sts: "00", msg: "Can't find job" });
+      }
     } else {
       res.status(401).json({ sts: "00", msg: "Some error occured!" });
     }

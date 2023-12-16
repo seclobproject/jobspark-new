@@ -139,22 +139,30 @@ export const getJobs = asyncHandler(async (req, res) => {
 
 // Apply for a job
 export const applyForJob = asyncHandler(async (req, res) => {
-  const employeeId = req.employee._id;
+  const userEmail = req.user.email;
 
   const { appliedJobId } = req.body;
 
-  const employee = await Employee.findById(employeeId);
+  const employee = await Employee.findOne({ email: userEmail });
   const jobApplying = await Job.findById(appliedJobId);
 
   if (employee) {
-    employee.appliedJobs.map((jobs) => {
-      if (jobs._id == appliedJobId) {
-        res.status(401).json({
-          sts: "00",
-          msg: "You already applied for this job",
-        });
+    let alreadyApplied = false;
+
+    // Check if the employee has already applied for this job
+    employee.appliedJobs.forEach((job) => {
+      if (job._id == appliedJobId) {
+        alreadyApplied = true;
+        return;
       }
     });
+
+    if (alreadyApplied) {
+      return res.status(401).json({
+        sts: "00",
+        msg: "You already applied for this job",
+      });
+    }
 
     employee.appliedJobs.push(appliedJobId);
 
@@ -187,9 +195,9 @@ export const applyForJob = asyncHandler(async (req, res) => {
 
 // Get all the applied jobs to employee
 export const getAppliedJobs = asyncHandler(async (req, res) => {
-  const employeeId = req.employee._id;
+  const userEmail = req.user.email;
 
-  const employee = await Employee.findById(employeeId).populate(
+  const employee = await Employee.findOne({ email: userEmail }).populate(
     "appliedJobs._id"
   );
 

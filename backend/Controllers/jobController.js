@@ -5,9 +5,9 @@ import Job from "../Models/jobModel.js";
 // Add a new job
 export const addJob = asyncHandler(async (req, res) => {
 
-  const company = req.employer._id;
+  const companyEmail = req.user.email;
 
-  const employer = await Employer.findById(company);
+  const employer = await Employer.findOne({ email: companyEmail });
 
   const {
     role,
@@ -25,7 +25,7 @@ export const addJob = asyncHandler(async (req, res) => {
   } = req.body;
 
   const newJob = await Job.create({
-    company,
+    company: employer._id,
     companyName: employer ? employer.companyName : null,
     role,
     description,
@@ -51,13 +51,12 @@ export const addJob = asyncHandler(async (req, res) => {
 
 // Edit existing job
 export const editJob = asyncHandler(async (req, res) => {
-
   const { id } = req.params;
-  
-  const company = req.employer._id;
+
+  const company = req.user._id;
   const updatejob = await Job.findByIdAndUpdate(id, { company, ...req.body });
   if (updatejob) {
-    res.status(201).json({ msg: "job Updated." });
+    res.status(201).json({ msg: "Job Updated." });
   } else {
     res.status(400);
   }
