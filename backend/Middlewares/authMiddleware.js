@@ -2,8 +2,9 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "../Config/asyncHandler.js";
 import Employee from "../Models/employeeModel.js";
 import Employer from "../Models/employerModel.js";
+import User from "../Models/userModel.js";
 
-export const protectEmployee = asyncHandler(async (req, res, next) => {
+export const protectUser = asyncHandler(async (req, res, next) => {
 
   let token;
   
@@ -11,13 +12,13 @@ export const protectEmployee = asyncHandler(async (req, res, next) => {
     req.headers.authorization && req.headers.authorization.startsWith("Bearer")
   ) {
     try {
+
       token = req.headers.authorization.split(" ")[1];
-
       const decoded = jwt.verify(token, "secret_of_jwt_for_jobspark_5959");
-
-      req.employee = await Employee.findById(decoded.employeeId).select("-password");
+      req.user = await User.findById(decoded.userId).select("-password");
 
       next();
+
     } catch (error) {
       console.error(error);
       res.status(401);

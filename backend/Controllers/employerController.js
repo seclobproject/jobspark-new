@@ -4,78 +4,60 @@ import jwt from "jsonwebtoken";
 import Employer from "../Models/employerModel.js";
 import Job from "../Models/jobModel.js";
 import Employee from "../Models/employeeModel.js";
+import User from "../Models/userModel.js";
 
-// Register new employer
-export const registerUser = asyncHandler(async (req, res) => {
-  const { companyName, email, phone, password } = req.body;
+// Employer details entry
+// Adding employer details
+export const addEmployer = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+  const phone = req.user.phone;
+  const email = req.user.email;
 
-  const existingEmployer = await Employer.findOne({
-    $or: [{ email }],
-  });
+  const existingEmployer = await Employer.findOne({ email });
+
+  const { companyName, companyAddress } = req.body;
+
+  const user = await User.findById(userId);
 
   if (existingEmployer) {
     res.status(401).json({ sts: "00", msg: "User already exists!" });
   } else {
-    const newEmployer = await Employer.create({
-      companyName,
-      email,
-      phone,
-      password,
-    });
-
-    if (newEmployer) {
-      res.status(201).json({
-        companyName: newEmployer.companyName,
-        email: newEmployer.email,
-        phone: newEmployer.phone,
+    if (user) {
+      const createdEmployer = await Employer.create({
+        companyName,
+        companyAddress,
+        email,
+        phone,
       });
-    } else {
-      res.status(401).json({ sts: "00", msg: "User registration failed!" });
-    }
-  }
-});
 
-//Login employer
-export const loginUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+      if (createdEmployer) {
+        // Connect employerModel reference to userModel.
+        user.employer = createdEmployer._id;
+        const updatedUser = await user.save();
 
-  const employer = await Employer.findOne({ email });
-
-  if (employer && (await employer.matchPassword(password))) {
-    const token = jwt.sign(
-      { employerId: employer._id },
-      "secret_of_jwt_for_jobspark_5959",
-      {
-        expiresIn: "365d",
+        if (updatedUser) res.status(201).json(createdEmployer);
+      } else {
+        res.status(400);
       }
-    );
-
-    res.status(200).json({
-      id: employer._id,
-      firstName: employer.firstName,
-      email: employer.email,
-      token_type: "Bearer",
-      access_token: token,
-      sts: "01",
-      msg: "Login Success",
-    });
-  } else {
-    res.status(401).json({ sts: "00", msg: "Invalid credentials" });
+    } else {
+      res.status(404);
+    }
   }
 });
 
 // Get the jobs posted to employer
 export const getJobs = asyncHandler(async (req, res) => {
-  
   const company = req.employer._id;
   const employeeJobs = await Job.find({ company: company });
 
   if (employeeJobs && employeeJobs.length > 0) {
-    const simplifiedJobs = employeeJobs.map(({ role, company, description }) => ({
-      role,
-      company,
-      description,
-    }));
+    const simplifiedJobs = employeeJobs.map(
+      ({ role, company, description }) => ({
+        role,
+        company,
+        description,
+      })
+    );
 
     res.status(200).json({ employeeJobs: simplifiedJobs });
   } else {

@@ -1,17 +1,16 @@
 import express from "express";
 import {
-  loginUser,
+  addEmployer,
   manageApplication,
-  registerUser,
 } from "../Controllers/employerController.js";
-import { protectEmployer } from "../Middlewares/authMiddleware.js";
+import { protectUser } from "../Middlewares/authMiddleware.js";
 import { getJobs } from "../Controllers/employeeController.js";
 const router = express.Router();
 
-router.route("/").post(registerUser);
-router.route("/login").post(loginUser);
-router.route("/manage-application").put(protectEmployer, manageApplication);
+router.route("/").post(protectUser, addEmployer);
+// router.route("/login").post(loginUser);
+router.route("/manage-application").put(manageApplication);
 
-router.route("/get-jobs").get(protectEmployer,getJobs);
+router.route("/get-jobs").get(getJobs);
 
 export default router;

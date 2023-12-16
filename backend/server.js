@@ -3,6 +3,7 @@ import express from "express";
 import jobRoutes from "./Routes/jobRoutes.js";
 import employeeRoutes from "./Routes/employeeRoutes.js";
 import employerRoutes from "./Routes/employerRoutes.js";
+import userRoutes from "./Routes/userRoutes.js";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 
 // APIs
 app.use("/api/jobs", jobRoutes);
+app.use("/api/user", userRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/employer", employerRoutes);
 

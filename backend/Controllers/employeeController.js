@@ -2,98 +2,18 @@ import asyncHandler from "../Config/asyncHandler.js";
 import Employee from "../Models/employeeModel.js";
 import User from "../Models/userModel.js";
 
-import jwt from "jsonwebtoken";
 import Job from "../Models/jobModel.js";
 
-// Register new employee
-// export const registerUser = asyncHandler(async (req, res) => {
-//   const { firstName, lastName, phone, email, password } = req.body;
-
-//   const existingEmployee = await Employee.findOne({
-//     $or: [{ email }, { phone }],
-//   });
-
-//   if (existingEmployee) {
-//     res.status(401).json({ sts: "00", msg: "User already exists!" });
-//   } else {
-//     const newEmployee = await Employee.create({
-//       firstName,
-//       lastName,
-//       phone,
-//       email,
-//       password,
-//     });
-
-//     if (newEmployee) {
-//       res.status(201).json({
-//         firstName: newEmployee.firstName,
-//         lastName: newEmployee.lastName,
-//         phone: newEmployee.phone,
-//         email: newEmployee.email,
-//       });
-//     } else {
-//       res.status(401).json({ sts: "00", msg: "User registration failed!" });
-//     }
-//   }
-// });
-
-// Login employee
-export const loginUser = asyncHandler(async (req, res) => {
-  const { firstName, lastName, phone, email } = req.body;
-
-  const employee = await User.findOne({ email });
-
-  const token = jwt.sign(
-    { employeeId: employee._id },
-    "secret_of_jwt_for_jobspark_5959",
-    {
-      expiresIn: "365d",
-    }
-  );
-
-  if (employee) {
-    res.status(200).json({
-      id: employee._id,
-      firstName: employee.firstName,
-      email: employee.email,
-      token_type: "Bearer",
-      access_token: token,
-      sts: "01",
-      msg: "Login Success",
-    });
-  } else {
-    const createUser = await User.create({
-      firstName,
-      lastName,
-      phone,
-      email,
-    });
-
-    if (createUser) {
-      res.status(201).json({
-        firstName: createUser.firstName,
-        lastName: createUser.lastName,
-        phone: createUser.phone,
-        email: createUser.email,
-        token_type: "Bearer",
-        access_token: token,
-        sts: "01",
-        msg: "Login Success",
-      });
-    } else {
-      res.status(400);
-    }
-  }
-});
-
 // Employee details entry from profile screen or while aaplying for the first time
+// Adding employee details
 export const fillProfile = asyncHandler(async (req, res) => {
-
   const userId = req.user._id;
   const firstName = req.user.firstName;
   const lastName = req.user.lastName;
   const phone = req.user.phone;
   const email = req.user.email;
+
+  const existingEmployee = await Employee.findOne({ email });
 
   const {
     gender,
@@ -125,43 +45,48 @@ export const fillProfile = asyncHandler(async (req, res) => {
     roles: roles || null,
     from: from || null,
     to: to || null,
-    currentStatus,
   };
-
-  if (user) {
-    
-    const createdProfile = await Employee.create({
-      firstName,
-      lastName,
-      phone,
-      email,
-      gender,
-      streetAddress,
-      cityState,
-      pincode,
-      jobTitle,
-      keySkills,
-      fbUrl,
-      twUrl,
-      linkedinUrl,
-      instaUrl,
-      currentWorkDetails,
-    });
-
-    if (createdProfile) {
-      res.status(201).json({ createdProfile });
-    } else {
-      res.status(400);
-    }
+  if (existingEmployee) {
+    res.status(401).json({ sts: "00", msg: "User already exists!" });
   } else {
-    res.status(404);
+    if (user) {
+      const createdProfile = await Employee.create({
+        firstName,
+        lastName,
+        phone,
+        email,
+        gender,
+        streetAddress,
+        cityState,
+        pincode,
+        jobTitle,
+        keySkills,
+        fbUrl,
+        twUrl,
+        linkedinUrl,
+        instaUrl,
+        currentWorkDetails,
+      });
+
+      if (createdProfile) {
+        // Connect employeeModel reference to userModel.
+        user.employee = createdProfile._id;
+        const updatedUser = await user.save();
+
+        if (updatedUser) res.status(201).json(createdProfile);
+      } else {
+        res.status(400);
+      }
+    } else {
+      res.status(404);
+    }
   }
 });
 
 // Get jobs to employee based on skillset
 export const getJobs = asyncHandler(async (req, res) => {
-  const employeeId = req.employee._id;
-  const employee = await Employee.findById(employeeId);
+  const userEmail = req.user.email;
+  const employee = await Employee.findOne({ email: userEmail });
 
   if (employee) {
     const employeeSkills = employee.keySkills;
