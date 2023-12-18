@@ -67,6 +67,11 @@ const jobSchema = new mongoose.Schema(
     },
     keySkills: [String],
     peopleApplied: [applicationSchema],
+    typeOfPackage: {
+      type: String,
+      enum: ["free", "gold", "silver", "platinum"],
+      required: true,
+    },
   },
   {
     timestamps: true,

@@ -22,6 +22,7 @@ export const addJob = asyncHandler(async (req, res) => {
     gender,
     email,
     keySkills,
+    typeOfPackage
   } = req.body;
 
   const newJob = await Job.create({
@@ -39,6 +40,7 @@ export const addJob = asyncHandler(async (req, res) => {
     gender,
     email,
     keySkills,
+    typeOfPackage
   });
 
   if (newJob) {
