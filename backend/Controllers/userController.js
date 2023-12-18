@@ -4,19 +4,22 @@ import jwt from "jsonwebtoken";
 
 // Login/get user
 export const loginUser = asyncHandler(async (req, res) => {
+  
   const { firstName, lastName, phone, email } = req.body;
 
   const user = await User.findOne({ email });
 
-  const token = jwt.sign(
-    { userId: user._id },
-    "secret_of_jwt_for_jobspark_5959",
-    {
-      expiresIn: "365d",
-    }
-  );
-
+  
   if (user) {
+
+    const token = jwt.sign(
+      { userId: user._id },
+      "secret_of_jwt_for_jobspark_5959",
+      {
+        expiresIn: "365d",
+      }
+    );
+
     res.status(200).json({
       id: user._id,
       firstName: user.firstName,
@@ -26,7 +29,9 @@ export const loginUser = asyncHandler(async (req, res) => {
       sts: "01",
       msg: "Login Success",
     });
+    
   } else {
+
     const createUser = await User.create({
       firstName,
       lastName,
@@ -35,6 +40,15 @@ export const loginUser = asyncHandler(async (req, res) => {
     });
 
     if (createUser) {
+
+      const token = jwt.sign(
+        { userId: createUser._id },
+        "secret_of_jwt_for_jobspark_5959",
+        {
+          expiresIn: "365d",
+        }
+      );
+
       res.status(201).json({
         firstName: createUser.firstName,
         lastName: createUser.lastName,
@@ -45,6 +59,7 @@ export const loginUser = asyncHandler(async (req, res) => {
         sts: "01",
         msg: "Account creation success",
       });
+
     } else {
       res.status(400);
     }

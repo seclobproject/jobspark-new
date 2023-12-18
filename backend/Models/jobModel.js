@@ -18,38 +18,16 @@ const jobSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Company",
     },
-    companyName: {
-      type: String,
-    },
-    role: {
+    jobTitle: {
       type: String,
       required: true,
     },
-    description: {
+    keySkills: [String],
+    employmentType: {
       type: String,
       required: true,
     },
-    openingsCount: {
-      type: Number,
-      required: true,
-    },
-    type: {
-      type: String,
-      required: true,
-    },
-    experience: {
-      type: String,
-      required: true,
-    },
-    packageAmount: {
-      type: String,
-      required: true,
-    },
-    education: {
-      type: String,
-      required: true,
-    },
-    location: {
+    district: {
       type: String,
       required: true,
     },
@@ -57,7 +35,11 @@ const jobSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    gender: {
+    address: {
+      type: String,
+      required: true,
+    },
+    pincode: {
       type: String,
       required: true,
     },
@@ -65,12 +47,61 @@ const jobSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    keySkills: [String],
+    phone: {
+      type: Number,
+      required: true,
+    },
+    companyName: {
+      type: String,
+    },
+    salaryMin: {
+      type: Number,
+    },
+    salaryMax: {
+      type: Number,
+    },
+    expMin: {
+      type: String,
+    },
+    expMax: {
+      type: String,
+    },
+    schedule: {
+      type: String,
+    },
+    openingsCount: {
+      type: Number,
+      required: true,
+    },
+    gender: {
+      type: String,
+      required: true,
+    },
+    education: {
+      type: String,
+      required: true,
+    },
+    rolesAndResponse: {
+      type: String,
+      required: true,
+    },
+    jobDesc: {
+      type: String,
+      required: true,
+    },
+    experienceReq: {
+      type: String,
+      required: true,
+    },
     peopleApplied: [applicationSchema],
     typeOfPackage: {
       type: String,
       enum: ["free", "gold", "silver", "platinum"],
       required: true,
+    },
+    maxApplicationCount: {
+      type: Number,
+      requiured: true,
     },
   },
   {

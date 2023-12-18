@@ -69,6 +69,39 @@ export const getCreatedJobs = asyncHandler(async (req, res) => {
   }
 });
 
+// Get all the entried to particular application
+export const getJobEntries = asyncHandler(async (req, res) => {
+  const userEmail = req.user.email;
+
+  const user = await User.findOne({ email: userEmail });
+
+  const { jobId } = req.body;
+  const job = await Job.findById(jobId).populate("peopleApplied._id");
+
+  if (user) {
+    if (job) {
+      if (job.peopleApplied.length > 0) {
+        const peopleApplied = job.peopleApplied;
+
+        if (user.typeOfPackage == "free") {
+          // Send only 20 applications
+          const firstTwentyApplications = peopleApplied.slice(0, 20);
+          res.status(200).json(firstTwentyApplications);
+          
+        } else {
+          res.status(200).json(peopleApplied);
+        }
+      } else {
+        res.status(200).json({ msg: "No job applications!" });
+      }
+    } else {
+      res.status(404).json({ msg: "This job is not available!" });
+    }
+  } else {
+    res.status(404).json({ msg: "User not found!" });
+  }
+});
+
 // Manage job applications (Accept/Reject/Pending/review)
 export const manageApplication = asyncHandler(async (req, res) => {
   const { jobId, managed, employeeId } = req.body;
@@ -98,7 +131,6 @@ export const manageApplication = asyncHandler(async (req, res) => {
       let jobInEmployeeSide = false;
 
       employee.appliedJobs.map((jobs) => {
-        
         if (jobs._id == jobId) {
           jobs.jobStatus = managed;
           jobInEmployeeSide = true;

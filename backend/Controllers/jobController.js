@@ -4,43 +4,65 @@ import Job from "../Models/jobModel.js";
 
 // Add a new job
 export const addJob = asyncHandler(async (req, res) => {
-
   const companyEmail = req.user.email;
 
   const employer = await Employer.findOne({ email: companyEmail });
 
   const {
-    role,
-    description,
-    openingsCount,
-    type,
-    experience,
-    packageAmount,
-    education,
-    location,
-    locality,
-    gender,
-    email,
+    jobTitle,
     keySkills,
-    typeOfPackage
+    employmentType,
+    district,
+    locality,
+    address,
+    pincode,
+    email,
+    phone,
+    salaryMin,
+    salaryMax,
+    expMin,
+    expMax,
+    schedule,
+    openingsCount,
+    gender,
+    education,
+    rolesAndResponse,
+    jobDesc,
+    experienceReq,
+    typeOfPackage,
   } = req.body;
+
+  let maxApplicationCount;
+
+  if (typeOfPackage == "free") {
+    maxApplicationCount = 20;
+  }
 
   const newJob = await Job.create({
     company: employer._id,
     companyName: employer ? employer.companyName : null,
-    role,
-    description,
-    openingsCount,
-    type,
-    experience,
-    packageAmount,
-    education,
-    location,
-    locality,
-    gender,
-    email,
+    jobTitle,
     keySkills,
-    typeOfPackage
+    employmentType,
+    district,
+    locality,
+    address,
+    pincode,
+    email,
+    phone,
+    salaryMin,
+    salaryMax,
+    expMin,
+    expMax,
+    schedule,
+    openingsCount,
+    gender,
+    education,
+    rolesAndResponse,
+    jobDesc,
+    experienceReq,
+    typeOfPackage,
+    maxApplicationCount
   });
 
   if (newJob) {
@@ -48,7 +70,7 @@ export const addJob = asyncHandler(async (req, res) => {
   } else {
     res.status(400);
   }
-
+  
 });
 
 // Edit existing job
