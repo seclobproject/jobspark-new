@@ -7,6 +7,7 @@ import Job from "../Models/jobModel.js";
 // Employee details entry from profile screen or while aaplying for the first time
 // Adding employee details
 export const fillProfile = asyncHandler(async (req, res) => {
+  console.log("hello");
   const userId = req.user._id;
   const firstName = req.user.firstName;
   const lastName = req.user.lastName;
