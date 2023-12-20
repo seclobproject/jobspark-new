@@ -93,8 +93,171 @@ header button {
 .mobile-search .banner-input-div {
   border-radius: 10px;
 }
+
+/* Job card main */
+.job-card-div {
+  background: #f5f5f5;
+  padding: 30px 40px;
+  border-radius: 24px;
+}
+.job-card-div img {
+  width: 64px;
+  margin-bottom: 12px;
+}
+.job-card-div h4 {
+  color: #000;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.job-card-div p {
+  margin-bottom: 16px;
+  color: #848484;
+  font-weight: 500;
+}
+.job-card-sub {
+  padding: 12px 14px;
+  border-radius: 20px;
+  background: #fff;
+}
+.salary-type {
+  border-radius: 6px;
+  background: #e5e5e5;
+  padding: 4px;
+}
+.salary-type span {
+  color: #4e4e4e;
+  font-size: 14px;
+  font-weight: 500;
+}
+.urg-hiring span {
+  color: #a8a8a8;
+  font-size: 14px;
+}
+/* Job card main */
+
+/* Footer */
+.footer-one-div {
+  background: #eaeaea;
+  padding: 40px 0;
+}
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.61) 3.5%,
+    rgba(10, 9, 9, 0) 81.96%
+  );
+  pointer-events: none;
+}
+.overlay-text p {
+  color: #e0ad2a;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+.overlay-text h4 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  width: 280px;
+  margin-bottom: 10px;
+}
+.overlay-text button {
+  border-radius: 14px;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 5px 30px;
+  transition: all 0.5s ease;
+  font-weight: 500;
+}
+.overlay-text button:hover {
+  background: #fff;
+  color: #e0ad2a;
+}
+.footer-two-div {
+  background: #f3f3f3;
+  padding: 40px 0;
+}
+.footer-two-div h4 {
+  color: #0f3f54;
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 60px;
+}
+.icons-div img {
+  margin-bottom: 10px;
+}
+.icons-div p {
+  color: #878787;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+}
+.collapse-title {
+  color: #09437f;
+  font-size: 10px;
+  font-weight: 500;
+}
+/* Footer */
+@media screen and (max-width: 424.9px) {
+  .overlay-text p {
+    font-size: 12px;
+    margin-bottom: 7px;
+  }
+  .overlay-text h4 {
+    font-size: 12px;
+    margin-bottom: 7px;
+    width: 135px;
+  }
+  .overlay-text button {
+    border-radius: 10px;
+    padding: 2px 18px;
+    font-weight: 500;
+    font-size: 12px;
+  }
+  .icons-div img {
+    width: 50px;
+  }
+  .icons-div p {
+    color: #878787;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+
 @media screen and (max-width: 767.9px) {
-  header {
-    height: 60px;
+  .job-card-div {
+    padding: 12px 12px;
+    border-radius: 12px;
+  }
+  .job-card-div h4 {
+    font-size: 14px;
+  }
+  .job-card-div p {
+    font-size: 12px;
+  }
+  .job-card-sub {
+    padding: 10px 10px;
+    border-radius: 12px;
+  }
+  .urg-hiring svg {
+    width: 12px;
+  }
+  .urg-hiring span {
+    font-size: 10px;
+  }
+  .salary-type span {
+    font-size: 10px;
+  }
+  .card-post-date span {
+    font-size: 10px;
+  }
+  .footer-two-div h4 {
+    text-align: center;
   }
 }
