@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MainJobCard from "../Components/MainJobCard";
 import Footer from "../Components/Footer";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { fetchUser } from "../Slice/userSlice";
 
-const HomeScreen = () => {
+const HomeScreen: React.FC = () => {
+  const dispatch = useDispatch();
+
+  const { data } = useSelector((state: any) => state.getUserDetailReducer);
+
+  let datas = {
+    firstName: "arshid",
+    lastName: "diyan",
+    email: "email@gmail.com",
+    phone: 9876543210,
+  };
+  
+  useEffect(() => {
+    dispatch(fetchUser(datas));
+  }, [dispatch]);
+
   return (
     <>
       {/* Banner - big screen */}

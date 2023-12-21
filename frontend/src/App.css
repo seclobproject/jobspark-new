@@ -202,6 +202,70 @@ header button {
   font-size: 10px;
   font-weight: 500;
 }
+.footer-three-div span {
+  color: #b6b6b6;
+  font-size: 14px;
+  font-weight: 500;
+}
+.footer-three-div p {
+  color: #727272;
+  font-size: 14px;
+}
+.footer-service-text h5 {
+  color: #000;
+  font-size: 17px;
+  font-weight: 600;
+}
+.footer-services p {
+  color: #3f3f3f;
+  font-size: 20px;
+  font-weight: 600;
+}
+.footer-services .icon {
+  width: 165px;
+  margin-top: 6px;
+}
+.footer-service-text p {
+  color: #848484;
+  font-size: 13px;
+  font-weight: 400;
+}
+.footer-end {
+  background: #9c9b9b;
+}
+.footer-end span {
+  color: #fff;
+}
+.footer-end-part {
+  background: #8f8f8f;
+  color: white;
+}
+.services-mob div {
+  border-radius: 4px;
+  background: rgba(233, 233, 233, 0.5);
+  padding: 3px;
+  text-align: center;
+  font-size: 7px;
+}
+.footer-social-icons h5 {
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+}
+.know-us-mob p {
+  color: #000;
+  font-size: 12px;
+  margin: 10px 0 10px 8px;
+}
+
+@keyframes expand {
+  from { max-height: 0; }
+  to { max-height: 1000px; } /* Adjust max-height as needed */
+}
+.expanded {
+  animation: expand 1.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
 /* Footer */
 @media screen and (max-width: 424.9px) {
   .overlay-text p {

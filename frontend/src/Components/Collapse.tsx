@@ -5,12 +5,24 @@ interface CollapseProps {
   children: ReactNode;
 }
 
+
 const Collapse: FC<CollapseProps> = ({ title, children }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-
+  
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
+
+  // const toggleCollapse = () => {
+  //   setIsCollapsed(!isCollapsed);
+  //   if (!isCollapsed) {
+  //     // Add the 'expanded' class to trigger the animation
+  //     this.contentRef.current.classList.add('expanded');
+  //   } else {
+  //     // Remove the 'expanded' class to revert the animation
+  //     this.contentRef.current.classList.remove('expanded');
+  //   }
+  // }
 
   return (
     <div className="p-2 mb-2">
@@ -32,19 +44,19 @@ const Collapse: FC<CollapseProps> = ({ title, children }) => {
               <path
                 d="M7.02246 0L13.5383 6.51588L7.51609 12.5381L1.00021 6.02225L7.02246 0Z"
                 fill="white"
-                fill-opacity="0.01"
+                fillOpacity="0.01"
               />
               <path
                 d="M9.03916 4.62998L5.5212 8.13798"
                 stroke="black"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M5.37305 4.47852L9.17398 8.27944"
                 stroke="black"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           ) : (
@@ -59,27 +71,27 @@ const Collapse: FC<CollapseProps> = ({ title, children }) => {
               <path
                 d="M2 2.43555L11.2148 2.43555L11.2148 10.9523L2 10.9523L2 2.43555Z"
                 fill="white"
-                fill-opacity="0.01"
+                fillOpacity="0.01"
               />
               <path
                 d="M6.69992 4.2832L6.69287 9.25131"
                 stroke="black"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M4 6.76758H9.37533"
                 stroke="black"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           )}
         </span>
       </div>
       {isCollapsed && (
-        <div className="mt-2">
-          {children}
+        <div className={`mt-2 ${isCollapsed ? `expanded` : ``}`}>
+          <div className="">{children}</div>
         </div>
       )}
     </div>

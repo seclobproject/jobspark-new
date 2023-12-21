@@ -72,26 +72,26 @@ const Header = () => {
                 <path
                   d="M24.4277 9.78564V15.6426C24.4277 19.7424 22.085 21.4995 18.5708 21.4995H6.85693C3.34277 21.4995 1 19.7424 1 15.6426V7.44287C1 3.34302 3.34277 1.58594 6.85693 1.58594H15.0566"
                   stroke="black"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeMiterlimit="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M6.85693 8.02832L10.5234 10.9568C11.7299 11.9173 13.7095 11.9173 14.9161 10.9568L16.2983 9.85568"
                   stroke="black"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeMiterlimit="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M21.4993 6.85693C23.1166 6.85693 24.4277 5.54581 24.4277 3.92847C24.4277 2.31112 23.1166 1 21.4993 1C19.8819 1 18.5708 2.31112 18.5708 3.92847C18.5708 5.54581 19.8819 6.85693 21.4993 6.85693Z"
                   stroke="black"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeMiterlimit="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
@@ -106,23 +106,23 @@ const Header = () => {
                 <path
                   d="M21.1559 12.833C21.8347 19.1044 24.5 20.9997 24.5 20.9997H3.5C3.5 20.9997 7 18.5108 7 9.79967C7 7.81939 7.7375 5.92022 9.05025 4.51995C10.363 3.11967 12.1435 2.33301 14 2.33301C14.3935 2.33301 14.7836 2.36836 15.1667 2.43741"
                   stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M22.1665 9.33301C24.0996 9.33301 25.6665 7.766 25.6665 5.83301C25.6665 3.90002 24.0996 2.33301 22.1665 2.33301C20.2335 2.33301 18.6665 3.90002 18.6665 5.83301C18.6665 7.766 20.2335 9.33301 22.1665 9.33301Z"
                   stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M16.0181 24.5C15.813 24.8536 15.5187 25.1471 15.1643 25.3511C14.8101 25.5551 14.4086 25.6626 13.9998 25.6626C13.591 25.6626 13.1894 25.5551 12.8352 25.3511C12.481 25.1471 12.1865 24.8536 11.9814 24.5"
                   stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
@@ -149,9 +149,9 @@ const Header = () => {
                 version="1.1"
                 id="Layer_1"
                 xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 492 492"
-                xml:space="preserve"
+                xmlSpace="preserve"
               >
                 <g>
                   <g>
@@ -183,26 +183,26 @@ const Header = () => {
                     <path
                       d="M24.4277 9.78564V15.6426C24.4277 19.7424 22.085 21.4995 18.5708 21.4995H6.85693C3.34277 21.4995 1 19.7424 1 15.6426V7.44287C1 3.34302 3.34277 1.58594 6.85693 1.58594H15.0566"
                       stroke="black"
-                      stroke-width="1.5"
-                      stroke-miterlimit="10"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeMiterlimit="10"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M6.85693 8.02832L10.5234 10.9568C11.7299 11.9173 13.7095 11.9173 14.9161 10.9568L16.2983 9.85568"
                       stroke="black"
-                      stroke-width="1.5"
-                      stroke-miterlimit="10"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeMiterlimit="10"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M21.4993 6.85693C23.1166 6.85693 24.4277 5.54581 24.4277 3.92847C24.4277 2.31112 23.1166 1 21.4993 1C19.8819 1 18.5708 2.31112 18.5708 3.92847C18.5708 5.54581 19.8819 6.85693 21.4993 6.85693Z"
                       stroke="black"
-                      stroke-width="1.5"
-                      stroke-miterlimit="10"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeMiterlimit="10"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </div>
@@ -217,23 +217,23 @@ const Header = () => {
                     <path
                       d="M21.1559 12.833C21.8347 19.1044 24.5 20.9997 24.5 20.9997H3.5C3.5 20.9997 7 18.5108 7 9.79967C7 7.81939 7.7375 5.92022 9.05025 4.51995C10.363 3.11967 12.1435 2.33301 14 2.33301C14.3935 2.33301 14.7836 2.36836 15.1667 2.43741"
                       stroke="black"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M22.1665 9.33301C24.0996 9.33301 25.6665 7.766 25.6665 5.83301C25.6665 3.90002 24.0996 2.33301 22.1665 2.33301C20.2335 2.33301 18.6665 3.90002 18.6665 5.83301C18.6665 7.766 20.2335 9.33301 22.1665 9.33301Z"
                       stroke="black"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M16.0181 24.5C15.813 24.8536 15.5187 25.1471 15.1643 25.3511C14.8101 25.5551 14.4086 25.6626 13.9998 25.6626C13.591 25.6626 13.1894 25.5551 12.8352 25.3511C12.481 25.1471 12.1865 24.8536 11.9814 24.5"
                       stroke="black"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </div>
