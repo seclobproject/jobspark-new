@@ -1,8 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
+import { useAppDispatch, useAppSelector } from "../store";
+import { fetchUser } from "../Slice/userSlice";
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  const { userInfo } = useAppSelector((state: any) => state.fetchUserReducer);
+
+  let datas = {
+    firstName: "arshid",
+    lastName: "diyan",
+    email: "email@gmail.com",
+    phone: 9876543210,
+  };
+
+  useEffect(() => {
+    dispatch(fetchUser(datas));
+  }, [dispatch]);
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -60,7 +77,9 @@ const Header = () => {
             <button className="button-primary mr-4">Employers</button>
             <button className="button-primary mr-4">Apply job</button>
             <button className="button-primary mr-4">Kozhikkode</button>
-            <button className="button-secondary mr-4">Log in</button>
+            <button className="button-secondary mr-4">
+              {userInfo && userInfo.firstName}
+            </button>
             <div className="mr-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

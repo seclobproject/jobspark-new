@@ -1,8 +1,16 @@
-const MainJobCard = () => {
+import React from "react";
+
+interface ComponentProps {
+  job: any;
+  // other prop types
+}
+
+const MainJobCard: React.FC<ComponentProps> = ({ job }) => {
+
   return (
     <div className="job-card-div">
       <img src="src/assets/boosted.png" alt="boosted-icon" />
-      <h4>Computer Operator Part Time / Data Entry Operator Fresher</h4>
+      <h4>{job.jobTitle}</h4>
       <p>Seclob Technologies, Cyberpark, Calicut</p>
       <div className="job-card-sub">
         <div className="flex gap-2 mb-2">
@@ -81,7 +89,6 @@ const MainJobCard = () => {
           </svg>
           <span>Based on jobs you explored</span>
         </div>
-
       </div>
     </div>
   );

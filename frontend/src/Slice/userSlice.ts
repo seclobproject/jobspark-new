@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { URL } from "../Constant";
 
-
 // Typescript codes to define type
 interface UserInfo {
   firstName: string;
@@ -17,27 +16,27 @@ interface AppState {
   error: boolean;
 }
 // Typescript codes to define type
+
 // Redux action to get user
-export const fetchUser = createAsyncThunk<UserInfo, void>(
-  "fetchUser",
-  async (data: any) => {
-    const { firstName, lastName, email, phone } = data;
+export const fetchUser = createAsyncThunk("fetchUser", async (data: any) => {
+  
+  const { firstName, lastName, email, phone } = data;
 
-    const config = {
-      headers: { "content-type": "application/json" },
-    };
+  const config = {
+    headers: { "content-type": "application/json" },
+  };
 
-    const response = await axios.post(
-      `${URL}/api/users/login`,
-      { firstName, lastName, email, phone },
-      config
-    );
+  const response = await axios.post(
+    `${URL}/api/user`,
+    { firstName, lastName, email, phone },
+    config
+  );
 
-    return response.data;
-  }
-);
+  return response.data;
+});
 
 const storedUserInfo = localStorage.getItem("userInfo");
+
 const parsedUserInfo: UserInfo | null = storedUserInfo
   ? (JSON.parse(storedUserInfo) as UserInfo)
   : null;

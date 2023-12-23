@@ -1,24 +1,25 @@
 import React, { useEffect } from "react";
 import MainJobCard from "../Components/MainJobCard";
 import Footer from "../Components/Footer";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { fetchUser } from "../Slice/userSlice";
 
-const HomeScreen: React.FC = () => {
-  const dispatch = useDispatch();
+import { useAppDispatch, useAppSelector } from "../store";
+import { getRecommendedJobs } from "../Slice/jobSlice";
 
-  const { data } = useSelector((state: any) => state.getUserDetailReducer);
+interface ComponentProps {
+  data: any;
+}
 
-  let datas = {
-    firstName: "arshid",
-    lastName: "diyan",
-    email: "email@gmail.com",
-    phone: 9876543210,
-  };
+const HomeScreen: React.FC<ComponentProps> = () => {
+  const dispatch = useAppDispatch();
+
+  const { data } = useAppSelector(
+    (state: any) => state.getRecommendedJobsReducer
+  );
+  console.log(data);
   
+
   useEffect(() => {
-    dispatch(fetchUser(datas));
+    dispatch(getRecommendedJobs());
   }, [dispatch]);
 
   return (
@@ -61,18 +62,12 @@ const HomeScreen: React.FC = () => {
       {/* Job cards */}
       <div className="container lg:max-w-7xl mx-auto px-4 pt-8 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="lg:p-3">
-            <MainJobCard />
-          </div>
-          <div className="lg:p-3">
-            <MainJobCard />
-          </div>
-          <div className="lg:p-3">
-            <MainJobCard />
-          </div>
-          <div className="lg:p-3">
-            <MainJobCard />
-          </div>
+          {data &&
+            data.map((job: any) => (
+              <div className="lg:p-3">
+                <MainJobCard job={job} />
+              </div>
+            ))}
         </div>
       </div>
       {/* Job cards */}

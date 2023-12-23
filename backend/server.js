@@ -1,5 +1,7 @@
 import express from "express";
 
+import cors from 'cors';
+
 import jobRoutes from "./Routes/jobRoutes.js";
 import employeeRoutes from "./Routes/employeeRoutes.js";
 import employerRoutes from "./Routes/employerRoutes.js";
@@ -15,6 +17,7 @@ connectDB();
 
 // ***important***
 app.use(express.json());
+app.use(cors());
 // ***important***
 
 
