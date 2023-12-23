@@ -115,7 +115,7 @@ export const getJobs = asyncHandler(async (req, res) => {
       {
         $sort: { priority: -1 },
       },
-    ]);
+    ]).limit(6);
 
     if (jobs) {
       res.status(201).json({

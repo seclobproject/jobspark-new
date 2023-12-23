@@ -2,16 +2,16 @@ import React from "react";
 
 interface ComponentProps {
   job: any;
+  daysDifference: number;
   // other prop types
 }
 
-const MainJobCard: React.FC<ComponentProps> = ({ job }) => {
-
+const MainJobCard: React.FC<ComponentProps> = ({ job, daysDifference }) => {
   return (
     <div className="job-card-div">
       <img src="src/assets/boosted.png" alt="boosted-icon" />
       <h4>{job.jobTitle}</h4>
-      <p>Seclob Technologies, Cyberpark, Calicut</p>
+      <p>{job.companyName}</p>
       <div className="job-card-sub">
         <div className="flex gap-2 mb-2">
           <div className="salary-type flex gap-1 items-center">
@@ -34,7 +34,9 @@ const MainJobCard: React.FC<ComponentProps> = ({ job }) => {
                 </clipPath>
               </defs>
             </svg>
-            <span>₹1,000 - ₹2,000 a day</span>
+            <span>
+              {job.salaryMin} - {job.salaryMin} per month
+            </span>
           </div>
           <div className="salary-type flex gap-1 items-center">
             <svg
@@ -77,7 +79,14 @@ const MainJobCard: React.FC<ComponentProps> = ({ job }) => {
         </div>
 
         <div className="card-post-date flex gap-1 items-center">
-          <span>Posted 10 days ago</span>
+          <span>
+            Posted{" "}
+            {daysDifference == 0
+              ? "today"
+              : daysDifference == 1
+              ? "1 day ago"
+              : `${daysDifference} days ago`}
+          </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="4"

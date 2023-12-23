@@ -89,10 +89,6 @@ const jobSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    experienceReq: {
-      type: String,
-      required: true,
-    },
     peopleApplied: [applicationSchema],
     typeOfPackage: {
       type: String,

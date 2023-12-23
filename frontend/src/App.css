@@ -259,14 +259,66 @@ header button {
 }
 
 @keyframes expand {
-  from { max-height: 0; }
-  to { max-height: 1000px; } /* Adjust max-height as needed */
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 1000px;
+  } /* Adjust max-height as needed */
 }
 .expanded {
   animation: expand 1.5s cubic-bezier(0.65, 0.05, 0.36, 1);
 }
-
 /* Footer */
+/* Top categories */
+.top-category-icon {
+  padding: 20px 0;
+  transition: all 0.4s ease-in-out;
+}
+.top-category-icon img {
+  width: 64px;
+  margin-bottom: 6px;
+}
+.top-category-icon p {
+  color: #0f3f54;
+  font-size: 14px;
+  font-weight: 500;
+}
+/* Top categories */
+/* Single job screen */
+.job-heading-div {
+  border-radius: 29px;
+  background: #f4f4f4;
+}
+.job-heading-div h1 {
+  color: #000;
+  font-size: 24px;
+  font-weight: 500;
+}
+.job-heading-div h5 {
+  color: #077ac2;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+}
+.job-heading-div p:first-of-type {
+  color: #a1a1a1;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+}
+.job-heading-div h6 {
+  color: #7e7e7e;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+}
+.date-n-count {
+  color: #9c9c9c;
+  font-size: 10px;
+  font-weight: 500;
+}
+/* Single job screen */
 @media screen and (max-width: 424.9px) {
   .overlay-text p {
     font-size: 12px;
@@ -291,6 +343,17 @@ header button {
     text-align: center;
     font-size: 12px;
     font-weight: 500;
+  }
+  .top-category-icon {
+    padding: 0;
+  }
+  .top-category-icon img {
+    width: 44px;
+    margin-bottom: 3px;
+  }
+  .top-category-icon p {
+    color: #0f3f54;
+    font-size: 8px;
   }
 }
 
@@ -323,5 +386,10 @@ header button {
   }
   .footer-two-div h4 {
     text-align: center;
+  }
+}
+@media screen and (min-width: 575.9px) {
+  .top-category-icon:hover {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
 }

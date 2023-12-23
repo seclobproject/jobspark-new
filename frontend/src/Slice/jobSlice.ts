@@ -36,8 +36,6 @@ const getJobsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getRecommendedJobs.pending, (state) => {
       state.pending = true;
-      state.data = null;
-      state.error = false;
     });
     builder.addCase(getRecommendedJobs.fulfilled, (state, action) => {
       state.pending = true;

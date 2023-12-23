@@ -28,7 +28,6 @@ export const addJob = asyncHandler(async (req, res) => {
     education,
     rolesAndResponse,
     jobDesc,
-    experienceReq,
     typeOfPackage,
   } = req.body;
 
@@ -60,7 +59,6 @@ export const addJob = asyncHandler(async (req, res) => {
     education,
     rolesAndResponse,
     jobDesc,
-    experienceReq,
     typeOfPackage,
     maxApplicationCount
   });
