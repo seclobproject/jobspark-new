@@ -11,10 +11,10 @@ const Header = () => {
   const { userInfo } = useAppSelector((state: any) => state.fetchUserReducer);
 
   let datas = {
-    firstName: "arshid",
-    lastName: "diyan",
-    email: "email@gmail.com",
-    phone: 9876543210,
+    firstName: "1arshid",
+    lastName: "1diyante",
+    phone: "1876543210",
+    email: "wmail@gmail.com"
   };
 
   useEffect(() => {
@@ -24,6 +24,7 @@ const Header = () => {
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
+  
   return (
     <>
       <header className="header-tag bg-white text-white">
@@ -31,7 +32,7 @@ const Header = () => {
           {/* Logo on the left */}
           <div className="flex items-center">
             <img
-              src="src/assets/seclob-logo.png"
+              src="/assets/seclob-logo.png"
               alt="Logo"
               className="header-logo mr-2"
             />
@@ -148,7 +149,7 @@ const Header = () => {
             <div>
               <img
                 className="w-7"
-                src="src/assets/account-icon.png"
+                src="/assets/account-icon.png"
                 alt="account-icon"
               />
             </div>
@@ -156,9 +157,8 @@ const Header = () => {
 
           {/* Hamburger menu for smaller screens */}
           <div
-            className={`md:hidden fixed top-0 right-0 h-full w-64 text-black bg-slate-200 p-4 transform z-10 ${
-              isMenuOpen ? "translate-x-0" : "translate-x-full"
-            } transition-transform duration-700 ease-in-out`}
+            className={`md:hidden fixed top-0 right-0 h-full w-64 text-black bg-slate-200 p-4 transform z-10 ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+              } transition-transform duration-700 ease-in-out`}
           >
             <button onClick={toggleMenu} className="text-black">
               <svg
@@ -259,7 +259,7 @@ const Header = () => {
                 <div>
                   <img
                     className="w-7"
-                    src="src/assets/account-icon.png"
+                    src="/assets/account-icon.png"
                     alt="account-icon"
                   />
                 </div>

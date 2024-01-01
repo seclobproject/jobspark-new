@@ -60,7 +60,7 @@ export const addJob = asyncHandler(async (req, res) => {
     rolesAndResponse,
     jobDesc,
     typeOfPackage,
-    maxApplicationCount
+    maxApplicationCount,
   });
 
   if (newJob) {
@@ -68,7 +68,6 @@ export const addJob = asyncHandler(async (req, res) => {
   } else {
     res.status(400);
   }
-  
 });
 
 // Edit existing job
@@ -92,5 +91,18 @@ export const deleteJob = asyncHandler(async (req, res) => {
     res.status(201).json({ msg: "job Deleted." });
   } else {
     res.status(400);
+  }
+});
+
+// GET single job details
+export const getSingleJob = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  const jobData = await Job.findById(id);
+
+  if (jobData) {
+    res.status(200).json(jobData);
+  } else {
+    res.status(404).json({ msg: "This job is not found!" });
   }
 });

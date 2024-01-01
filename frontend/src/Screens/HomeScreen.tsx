@@ -5,6 +5,7 @@ import Footer from "../Components/Footer";
 import { useAppDispatch, useAppSelector } from "../store";
 import { getRecommendedJobs } from "../Slice/jobSlice";
 import TopCategories from "../partials/TopCategories";
+import { Link } from "react-router-dom";
 
 interface ComponentProps {
   data: any;
@@ -16,7 +17,6 @@ const HomeScreen: React.FC<ComponentProps> = () => {
   const { data } = useAppSelector(
     (state: any) => state.getRecommendedJobsReducer
   );
-  console.log(data);
 
   useEffect(() => {
     dispatch(getRecommendedJobs());
@@ -37,7 +37,7 @@ const HomeScreen: React.FC<ComponentProps> = () => {
 
             {/* Search bar */}
             <div className="flex items-center banner-input-div max-w-md mx-auto bg-white shadow-md">
-              <img className="w-6 mx-3" src="src/assets/search.png" alt="" />
+              <img className="w-6 mx-3" src="src/assets/search.png" alt="search" />
               <input
                 type="text"
                 placeholder="Search"
@@ -68,24 +68,25 @@ const HomeScreen: React.FC<ComponentProps> = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {data &&
             data.jobs.map((job: any) => {
-
-              const createdAtDate:any = new Date(job.createdAt);
+              const createdAtDate: any = new Date(job.createdAt);
 
               // Get the current date without the time part
-              const currentDate:any = new Date();
+              const currentDate: any = new Date();
               currentDate.setHours(0, 0, 0, 0);
 
               // Calculate the time difference in milliseconds
-              const timeDifference:any = currentDate - createdAtDate;
+              const timeDifference: any = currentDate - createdAtDate;
 
               // Calculate the number of days
-              const daysDifference:number = Math.floor(
+              const daysDifference: number = Math.floor(
                 timeDifference / (1000 * 60 * 60 * 24)
               );
-              
+
               return (
                 <div className="lg:p-3" key={job._id}>
-                  <MainJobCard job={job} daysDifference={daysDifference}/>
+                  <Link to={`/job/${job._id}`}>
+                    <MainJobCard job={job} daysDifference={daysDifference} />
+                  </Link>
                 </div>
               );
             })}

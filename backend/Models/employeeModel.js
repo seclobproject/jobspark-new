@@ -36,7 +36,6 @@ const workSchema = new mongoose.Schema({
   },
 });
 
-
 const employeeSchema = new mongoose.Schema(
   {
     firstName: {
@@ -119,6 +118,9 @@ const employeeSchema = new mongoose.Schema(
           type: mongoose.Schema.Types.ObjectId,
           ref: "Job",
         },
+        uploadedResume: {
+          type: String,
+        },
         jobStatus: {
           type: String,
           enum: ["pending", "accepted", "rejected", "review"],
@@ -131,7 +133,6 @@ const employeeSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
 
 const Employee = mongoose.model("Employee", employeeSchema);
 export default Employee;

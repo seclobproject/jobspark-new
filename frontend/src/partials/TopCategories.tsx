@@ -43,14 +43,6 @@ const TopCategories: React.FC = () => {
   return (
     <div className="container lg:max-w-7xl mx-auto px-4 pt-8">
       {/* <div className="grid lg:grid-cols-8 gap-6">
-        <TopCatogoryIcon />
-        <TopCatogoryIcon />
-        <TopCatogoryIcon />
-        <TopCatogoryIcon />
-        <TopCatogoryIcon />
-        <TopCatogoryIcon />
-        <TopCatogoryIcon />
-        <TopCatogoryIcon />
       </div> */}
       <Slider {...settings}>
         <div className="p-2">

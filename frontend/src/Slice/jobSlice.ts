@@ -27,10 +27,10 @@ export const getRecommendedJobs = createAsyncThunk(
 
 const getJobsSlice = createSlice({
   name: "getJobsSlice",
-  initialState:{
+  initialState: {
     data: null,
     pending: false,
-    error: false
+    error: false,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -49,4 +49,52 @@ const getJobsSlice = createSlice({
   },
 });
 
+// Get single job details
+export const getSingleJobDetails = createAsyncThunk(
+  "getSingleJobDetails",
+  async (jobId: any) => {
+    const token: any = localStorage.getItem("userInfo");
+    const parsedData = JSON.parse(token);
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${parsedData.access_token}`,
+        "content-type": "application/json",
+      },
+    };
+
+    const response = await axios.get(
+      `${URL}/api/jobs/getJob/${jobId}`,
+      config
+    );
+
+    return response.data;
+  }
+);
+
+const getSingleJobDetailsSlice = createSlice({
+  name: "getSingleJobDetailsSlice",
+  initialState: {
+    data: null,
+    pending: false,
+    error: false,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getSingleJobDetails.pending, (state) => {
+      state.pending = true;
+    });
+    builder.addCase(getSingleJobDetails.fulfilled, (state, action) => {
+      state.pending = true;
+      state.data = action.payload;
+      state.error = false;
+    });
+    builder.addCase(getSingleJobDetails.rejected, (state, action) => {
+      console.log("Error", action.payload);
+      state.error = true;
+    });
+  },
+});
+
 export const getRecommendedJobsReducer = getJobsSlice.reducer;
+export const getSingleJobDetailsReducer = getSingleJobDetailsSlice.reducer;

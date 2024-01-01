@@ -11,7 +11,7 @@ const Footer = () => {
               <div className="relative">
                 <img
                   className="object-cover rounded-2xl w-full"
-                  src="src/assets/footer-service.png"
+                  src="/assets/footer-service.png"
                   alt="service-1"
                 />
                 <div className="image-overlay rounded-2xl"></div>
@@ -27,7 +27,7 @@ const Footer = () => {
               <div className="relative">
                 <img
                   className="object-cover rounded-2xl w-full"
-                  src="src/assets/footer-service.png"
+                  src="/assets/footer-service.png"
                   alt="service-1"
                 />
                 <div className="image-overlay rounded-2xl"></div>
@@ -47,7 +47,7 @@ const Footer = () => {
           <h4>Why Seclob?</h4>
           <div className="grid justify-between grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             <div className="icons-div text-center flex flex-col items-center">
-              <img src="src/assets/schedule-icon.png" alt="schedule-icon" />
+              <img src="/assets/schedule-icon.png" alt="schedule-icon" />
               <p>
                 On Demand/
                 <br />
@@ -56,7 +56,7 @@ const Footer = () => {
             </div>
 
             <div className="icons-div text-center flex flex-col items-center">
-              <img src="src/assets/partner-icon.png" alt="partner-icon" />
+              <img src="/assets/partner-icon.png" alt="partner-icon" />
               <p>
                 Verified <br />
                 Partners
@@ -64,7 +64,7 @@ const Footer = () => {
             </div>
 
             <div className="icons-div text-center flex flex-col items-center">
-              <img src="src/assets/warranty-icon.png" alt="warranty-icon" />
+              <img src="/assets/warranty-icon.png" alt="warranty-icon" />
               <p>
                 Service <br />
                 Warranty
@@ -73,7 +73,7 @@ const Footer = () => {
 
             <div className="icons-div text-center flex flex-col items-center">
               <img
-                src="src/assets/transparent-icon.png"
+                src="/assets/transparent-icon.png"
                 alt="transparent-icon"
               />
               <p>
@@ -83,7 +83,7 @@ const Footer = () => {
             </div>
 
             <div className="icons-div text-center flex flex-col items-center">
-              <img src="src/assets/onlinepay-icon.png" alt="onlinepay-icon" />
+              <img src="/assets/onlinepay-icon.png" alt="onlinepay-icon" />
               <p>
                 Online <br />
                 Payments
@@ -91,7 +91,7 @@ const Footer = () => {
             </div>
 
             <div className="icons-div text-center flex flex-col items-center">
-              <img src="src/assets/support-icon.png" alt="support-icon" />
+              <img src="/assets/support-icon.png" alt="support-icon" />
               <p>
                 24 x 7 <br />
                 Support
@@ -132,7 +132,7 @@ const Footer = () => {
                 <div className="icon">
                   <img
                     className="w-100"
-                    src="src/assets/footer-service-icon.png"
+                    src="/assets/footer-service-icon.png"
                     alt="footer-service"
                   />
                 </div>
@@ -149,7 +149,7 @@ const Footer = () => {
                 <div className="icon">
                   <img
                     className="w-100"
-                    src="src/assets/footer-service-icon.png"
+                    src="/assets/footer-service-icon.png"
                     alt="footer-service"
                   />
                 </div>
@@ -166,7 +166,7 @@ const Footer = () => {
                 <div className="icon">
                   <img
                     className="w-100"
-                    src="src/assets/footer-service-icon.png"
+                    src="/assets/footer-service-icon.png"
                     alt="footer-service"
                   />
                 </div>
@@ -183,7 +183,7 @@ const Footer = () => {
                 <div className="icon">
                   <img
                     className="w-100"
-                    src="src/assets/footer-service-icon.png"
+                    src="/assets/footer-service-icon.png"
                     alt="footer-service"
                   />
                 </div>
@@ -209,7 +209,7 @@ const Footer = () => {
           <div className="flex justify-center items-center flex-col">
             <img
               className="w-40"
-              src="src/assets/seclob-footer.png"
+              src="/assets/seclob-footer.png"
               alt="footer-icon"
             />
             <div className="w-96 text-center text-xs my-8">
@@ -221,11 +221,11 @@ const Footer = () => {
 
             <div className="footer-social-icons flex gap-3 items-center">
               <h5>Follow Us On</h5>
-              <img src="src/assets/instagram.png" alt="instagram" />
-              <img src="src/assets/facebook.png" alt="facebook" />
-              <img src="src/assets/linkedin.png" alt="linkedin" />
-              <img src="src/assets/twitter.png" alt="twitter" />
-              <img src="src/assets/youtube.png" alt="youtube" />
+              <img src="/assets/instagram.png" alt="instagram" />
+              <img src="/assets/facebook.png" alt="facebook" />
+              <img src="/assets/linkedin.png" alt="linkedin" />
+              <img src="/assets/twitter.png" alt="twitter" />
+              <img src="/assets/youtube.png" alt="youtube" />
             </div>
           </div>
         </div>
@@ -242,7 +242,7 @@ const Footer = () => {
         <Collapse title="Why Seclob?">
           <div className="grid justify-between grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             <div className="icons-div text-center flex flex-col items-center">
-              <img src="src/assets/schedule-icon.png" alt="schedule-icon" />
+              <img src="/assets/schedule-icon.png" alt="schedule-icon" />
               <p>
                 On Demand/
                 <br />
@@ -251,7 +251,7 @@ const Footer = () => {
             </div>
 
             <div className="icons-div text-center flex flex-col items-center">
-              <img src="src/assets/partner-icon.png" alt="partner-icon" />
+              <img src="/assets/partner-icon.png" alt="partner-icon" />
               <p>
                 Verified <br />
                 Partners
@@ -259,7 +259,7 @@ const Footer = () => {
             </div>
 
             <div className="icons-div text-center flex flex-col items-center">
-              <img src="src/assets/warranty-icon.png" alt="warranty-icon" />
+              <img src="/assets/warranty-icon.png" alt="warranty-icon" />
               <p>
                 Service <br />
                 Warranty
@@ -268,7 +268,7 @@ const Footer = () => {
 
             <div className="icons-div text-center flex flex-col items-center">
               <img
-                src="src/assets/transparent-icon.png"
+                src="/assets/transparent-icon.png"
                 alt="transparent-icon"
               />
               <p>
@@ -278,7 +278,7 @@ const Footer = () => {
             </div>
 
             <div className="icons-div text-center flex flex-col items-center">
-              <img src="src/assets/onlinepay-icon.png" alt="onlinepay-icon" />
+              <img src="/assets/onlinepay-icon.png" alt="onlinepay-icon" />
               <p>
                 Online <br />
                 Payments
@@ -286,7 +286,7 @@ const Footer = () => {
             </div>
 
             <div className="icons-div text-center flex flex-col items-center">
-              <img src="src/assets/support-icon.png" alt="support-icon" />
+              <img src="/assets/support-icon.png" alt="support-icon" />
               <p>
                 24 x 7 <br />
                 Support
@@ -333,11 +333,11 @@ const Footer = () => {
 
         <Collapse title="Follow Us On">
           <div className="footer-social-icons flex gap-3 items-center mt-4 justify-center">
-            <img src="src/assets/instagram.png" alt="instagram" />
-            <img src="src/assets/facebook.png" alt="facebook" />
-            <img src="src/assets/linkedin.png" alt="linkedin" />
-            <img src="src/assets/twitter.png" alt="twitter" />
-            <img src="src/assets/youtube.png" alt="youtube" />
+            <img src="/assets/instagram.png" alt="instagram" />
+            <img src="/assets/facebook.png" alt="facebook" />
+            <img src="/assets/linkedin.png" alt="linkedin" />
+            <img src="/assets/twitter.png" alt="twitter" />
+            <img src="/assets/youtube.png" alt="youtube" />
           </div>
         </Collapse>
       </div>
@@ -345,7 +345,7 @@ const Footer = () => {
       <div className="footer-end pt-5 flex items-center flex-col md:hidden">
         <img
           className="w-40"
-          src="src/assets/seclob-footer.png"
+          src="/assets/seclob-footer.png"
           alt="footer-icon"
         />
 

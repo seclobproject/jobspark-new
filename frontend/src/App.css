@@ -40,35 +40,43 @@ input:active,
 input:focus {
   outline: none;
 }
+
 header {
   height: 100px;
 }
+
 .header-logo {
   width: 120px;
 }
+
 header button {
   padding: 8px 20px;
 }
+
 .button-primary {
   border-radius: 7px;
   background: #077ac2;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+
 .button-secondary {
   border-radius: 10px;
   background: #fff;
   color: #0a4a70;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+
 .location-header-mob {
   font-size: 12px;
   color: #000000;
 }
+
 .banner-heading {
   font-size: 35.172px;
   font-style: normal;
   font-weight: 600;
 }
+
 .banner-input-div {
   border-radius: 25px;
   border: 1px solid #ddd;
@@ -77,19 +85,23 @@ header button {
   box-shadow: 4.69px 4.69px 4.69px 0px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(9.379310607910156px);
 }
+
 .banner-input-div input {
   width: 300px;
   color: slategray;
 }
+
 .search-btn {
   border-radius: 25px;
   background: #0778bf;
   padding: 12px 32px;
 }
+
 .mobile-search {
   background: #f2f2f2;
   padding: 16px 20px;
 }
+
 .mobile-search .banner-input-div {
   border-radius: 10px;
 }
@@ -100,40 +112,48 @@ header button {
   padding: 30px 40px;
   border-radius: 24px;
 }
+
 .job-card-div img {
   width: 64px;
   margin-bottom: 12px;
 }
+
 .job-card-div h4 {
   color: #000;
   font-size: 22px;
   font-weight: 500;
   margin-bottom: 6px;
 }
+
 .job-card-div p {
   margin-bottom: 16px;
   color: #848484;
   font-weight: 500;
 }
+
 .job-card-sub {
   padding: 12px 14px;
   border-radius: 20px;
   background: #fff;
 }
+
 .salary-type {
   border-radius: 6px;
   background: #e5e5e5;
   padding: 4px;
 }
+
 .salary-type span {
   color: #4e4e4e;
   font-size: 14px;
   font-weight: 500;
 }
+
 .urg-hiring span {
   color: #a8a8a8;
   font-size: 14px;
 }
+
 /* Job card main */
 
 /* Footer */
@@ -141,6 +161,7 @@ header button {
   background: #eaeaea;
   padding: 40px 0;
 }
+
 .image-overlay {
   position: absolute;
   top: 0;
@@ -154,11 +175,13 @@ header button {
   );
   pointer-events: none;
 }
+
 .overlay-text p {
   color: #e0ad2a;
   font-size: 17px;
   margin-bottom: 10px;
 }
+
 .overlay-text h4 {
   color: #fff;
   font-size: 24px;
@@ -166,6 +189,7 @@ header button {
   width: 280px;
   margin-bottom: 10px;
 }
+
 .overlay-text button {
   border-radius: 14px;
   border: 2px solid #fff;
@@ -174,72 +198,88 @@ header button {
   transition: all 0.5s ease;
   font-weight: 500;
 }
+
 .overlay-text button:hover {
   background: #fff;
   color: #e0ad2a;
 }
+
 .footer-two-div {
   background: #f3f3f3;
   padding: 40px 0;
 }
+
 .footer-two-div h4 {
   color: #0f3f54;
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 60px;
 }
+
 .icons-div img {
   margin-bottom: 10px;
 }
+
 .icons-div p {
   color: #878787;
   text-align: center;
   font-size: 15px;
   font-weight: 500;
 }
+
 .collapse-title {
   color: #09437f;
   font-size: 10px;
   font-weight: 500;
 }
+
 .footer-three-div span {
   color: #b6b6b6;
   font-size: 14px;
   font-weight: 500;
 }
+
 .footer-three-div p {
   color: #727272;
   font-size: 14px;
 }
+
 .footer-service-text h5 {
   color: #000;
   font-size: 17px;
   font-weight: 600;
 }
+
 .footer-services p {
   color: #3f3f3f;
   font-size: 20px;
   font-weight: 600;
 }
+
 .footer-services .icon {
   width: 165px;
   margin-top: 6px;
 }
+
 .footer-service-text p {
   color: #848484;
   font-size: 13px;
   font-weight: 400;
 }
+
 .footer-end {
   background: #9c9b9b;
 }
+
 .footer-end span {
   color: #fff;
 }
+
 .footer-end-part {
   background: #8f8f8f;
   color: white;
 }
+
 .services-mob div {
   border-radius: 4px;
   background: rgba(233, 233, 233, 0.5);
@@ -247,11 +287,13 @@ header button {
   text-align: center;
   font-size: 7px;
 }
+
 .footer-social-icons h5 {
   color: #000;
   font-size: 18px;
   font-weight: 600;
 }
+
 .know-us-mob p {
   color: #000;
   font-size: 12px;
@@ -262,95 +304,232 @@ header button {
   from {
     max-height: 0;
   }
+
   to {
     max-height: 1000px;
-  } /* Adjust max-height as needed */
+  }
+
+  /* Adjust max-height as needed */
 }
+
 .expanded {
   animation: expand 1.5s cubic-bezier(0.65, 0.05, 0.36, 1);
 }
+
 /* Footer */
 /* Top categories */
 .top-category-icon {
   padding: 20px 0;
   transition: all 0.4s ease-in-out;
 }
+
 .top-category-icon img {
   width: 64px;
   margin-bottom: 6px;
 }
+
 .top-category-icon p {
   color: #0f3f54;
   font-size: 14px;
   font-weight: 500;
 }
+
 /* Top categories */
 /* Single job screen */
 .job-heading-div {
   border-radius: 29px;
   background: #f4f4f4;
 }
+
 .job-heading-div h1 {
   color: #000;
   font-size: 24px;
   font-weight: 500;
 }
+
 .job-heading-div h5 {
   color: #077ac2;
   font-size: 16px;
   font-weight: 500;
   line-height: 30px;
 }
+
 .job-heading-div p:first-of-type {
   color: #a1a1a1;
   font-size: 16px;
   font-weight: 500;
   line-height: 30px;
 }
+
 .job-heading-div h6 {
   color: #7e7e7e;
   font-size: 16px;
   font-weight: 500;
   line-height: 30px;
 }
+
+.spacer {
+  width: 30px;
+}
+
 .date-n-count {
   color: #9c9c9c;
   font-size: 10px;
   font-weight: 500;
+  margin-top: 18px;
+}
+
+.apply-btn {
+  border-radius: 17px;
+  background: #077ac2;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  width: 140px;
+  padding: 6px 0;
+}
+
+.applied-btn {
+  border-radius: 17px;
+  background: gray;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  width: 140px;
+}
+
+.job-page-subheads {
+  color: #000;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.job-details p {
+  color: #8c8c8c;
+  font-size: 16px;
+  text-align: justify;
+}
+
+.job-details li::before {
+  content: "";
+  margin-right: 8px;
+  background-color: #8c8c8c;
+  width: 10px;
+  height: 10px;
+}
+
+.job-details li {
+  color: #939393;
+  font-size: 16px;
+}
+
+.package-box {
+  border-radius: 19px;
+  background: #e4e4e4;
+  padding: 4px 16px;
+  font-size: 12px;
+}
+
+.job-details h4 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.recent-jobs-head {
+  color: #0a4a70;
+  font-size: 26px;
+  font-weight: 500;
 }
 /* Single job screen */
+/* Upload resume screen */
+.resume-upload-div {
+  border-radius: 12px;
+  border: 1px solid #cdcdcd;
+}
+.file-input-form {
+  border-radius: 18px;
+  border: 1px solid #cdcdcd;
+  padding: 4px 4px 4px 10px;
+  width: 280px;
+  color: #8c8c8c;
+  font-size: 13px;
+  font-weight: 500;
+}
+#custom-file-input {
+  width: 250px;
+  overflow: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.browse-file-btn {
+  border-radius: 18px;
+  background: #0a4a70;
+  width: 92px;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+.resume-page-bottom-btns button:first-child {
+  border-radius: 10px;
+  border: 1px solid #000;
+  padding: 8px 10px;
+  margin-right: 10px;
+}
+.resume-page-bottom-btns button:nth-child(2) {
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: #077AC2;
+  color: white;
+}
+/* Upload resume screen */
 @media screen and (max-width: 424.9px) {
   .overlay-text p {
     font-size: 12px;
     margin-bottom: 7px;
   }
+
   .overlay-text h4 {
     font-size: 12px;
     margin-bottom: 7px;
     width: 135px;
   }
+
   .overlay-text button {
     border-radius: 10px;
     padding: 2px 18px;
     font-weight: 500;
     font-size: 12px;
   }
+
   .icons-div img {
     width: 50px;
   }
+
   .icons-div p {
     color: #878787;
     text-align: center;
     font-size: 12px;
     font-weight: 500;
   }
+
   .top-category-icon {
     padding: 0;
   }
+
   .top-category-icon img {
     width: 44px;
     margin-bottom: 3px;
   }
+
   .top-category-icon p {
     color: #0f3f54;
     font-size: 8px;
@@ -362,32 +541,81 @@ header button {
     padding: 12px 12px;
     border-radius: 12px;
   }
+
   .job-card-div h4 {
     font-size: 14px;
   }
+
   .job-card-div p {
     font-size: 12px;
   }
+
   .job-card-sub {
     padding: 10px 10px;
     border-radius: 12px;
   }
+
   .urg-hiring svg {
     width: 12px;
   }
+
   .urg-hiring span {
     font-size: 10px;
   }
+
   .salary-type span {
     font-size: 10px;
   }
+
   .card-post-date span {
     font-size: 10px;
   }
+
   .footer-two-div h4 {
     text-align: center;
   }
+
+  .job-heading-div h1 {
+    font-size: 15px;
+  }
+
+  .job-heading-div {
+    border-radius: 16px;
+  }
+
+  .date-n-count {
+    margin-top: 2px;
+  }
+
+  .apply-btn {
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100px;
+  }
+
+  .applied-btn {
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100px;
+  }
+
+  .job-details h4 {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .job-details span {
+    font-size: 14px;
+  }
+
+  .package-box {
+    padding: 3px 13px;
+    font-size: 12px !important;
+  }
 }
+
 @media screen and (min-width: 575.9px) {
   .top-category-icon:hover {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;

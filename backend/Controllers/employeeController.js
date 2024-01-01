@@ -1,7 +1,7 @@
 import asyncHandler from "../Config/asyncHandler.js";
+
 import Employee from "../Models/employeeModel.js";
 import User from "../Models/userModel.js";
-
 import Job from "../Models/jobModel.js";
 
 // Employee details entry from profile screen or while aaplying for the first time
@@ -86,6 +86,7 @@ export const fillProfile = asyncHandler(async (req, res) => {
 // Get jobs to employee based on skillset
 export const getJobs = asyncHandler(async (req, res) => {
   const userEmail = req.user.email;
+
   const employee = await Employee.findOne({ email: userEmail });
 
   if (employee) {
@@ -137,19 +138,74 @@ export const getJobs = asyncHandler(async (req, res) => {
   }
 });
 
+// Upload resume
+export const uploadResume = asyncHandler(async (req, res) => {
+  const userEmail = req.user.email;
+  const { appliedJobId } = req.body;
+
+  if (!req.file) {
+    res.status(400).json({ message: "No file uploaded" });
+  }
+
+  // const filePath = req.file.path;
+
+  const employee = await Employee.findOne({ email: userEmail });
+
+  if (employee) {
+    let alreadyApplied = false;
+    // const jobApplying = await Job.findById(appliedJobId);
+
+    // Check if the employee has already applied for this job
+    employee.appliedJobs.forEach((job) => {
+      if (job._id == appliedJobId) {
+        alreadyApplied = true;
+        return;
+      }
+    });
+
+    if (alreadyApplied) {
+      return res.status(401).json({
+        sts: "00",
+        msg: "You already applied for this job",
+      });
+    } else {
+      employee.appliedJobs.push({
+        _id: appliedJobId,
+        uploadedResume: req.file.filename,
+      });
+
+      const updatedEmp = await employee.save();
+
+      if (updatedEmp) {
+        return res.status(201).json({
+          sts: "01",
+          msg: "Resume uploaded successfully!",
+        });
+      } else {
+        return res.status(400).json({
+          sts: "00",
+          msg: "Some error occured. Please try again!",
+        });
+      }
+    }
+  }
+});
+
 // Apply for a job
 export const applyForJob = asyncHandler(async (req, res) => {
   const userEmail = req.user.email;
 
   const { appliedJobId } = req.body;
 
+  const user = await User.findOne({ email: userEmail }).populate("employee");
   const employee = await Employee.findOne({ email: userEmail });
+
   const jobApplying = await Job.findById(appliedJobId);
 
-  if (employee) {
+  if (user) {
     let alreadyApplied = false;
 
-    // Check if the employee has already applied for this job
+    // Check if the user has already applied for this job
     employee.appliedJobs.forEach((job) => {
       if (job._id == appliedJobId) {
         alreadyApplied = true;
@@ -166,11 +222,12 @@ export const applyForJob = asyncHandler(async (req, res) => {
 
     employee.appliedJobs.push(appliedJobId);
 
+    const updatedUser = await user.save();
     const updatedEmployee = await employee.save();
 
-    if (updatedEmployee) {
-      // Add the employee to job
-      jobApplying.peopleApplied.push(employee._id);
+    if (updatedUser && updatedEmployee) {
+      // Add the user to job
+      jobApplying.peopleApplied.push(user._id);
       const updatedJob = await jobApplying.save();
 
       if (updatedJob) {

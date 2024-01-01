@@ -5,7 +5,6 @@ import Employer from "../Models/employerModel.js";
 import User from "../Models/userModel.js";
 
 export const protectUser = asyncHandler(async (req, res, next) => {
-
   let token;
   
   if (
