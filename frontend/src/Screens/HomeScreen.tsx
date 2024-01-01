@@ -12,15 +12,18 @@ interface ComponentProps {
 }
 
 const HomeScreen: React.FC<ComponentProps> = () => {
+
   const dispatch = useAppDispatch();
 
   const { data } = useAppSelector(
     (state: any) => state.getRecommendedJobsReducer
   );
 
+  const { userInfo } = useAppSelector((state: any) => state.fetchUserReducer);
+
   useEffect(() => {
     dispatch(getRecommendedJobs());
-  }, [dispatch]);
+  }, [dispatch, userInfo]);
 
   return (
     <>
