@@ -143,9 +143,6 @@ export const uploadResume = asyncHandler(async (req, res) => {
   const userEmail = req.user.email;
   const { appliedJobId } = req.body;
 
-  console.log(`appliedJobId is ` + appliedJobId);
-  console.log(`filename is ` + req.file.filename);
-
   if (!req.file) {
     res.status(400).json({ message: "No file uploaded" });
   }
@@ -162,15 +159,19 @@ export const uploadResume = asyncHandler(async (req, res) => {
     }
   });
 
-  if (alreadyApplied) {
+  const stringUpdate = await Employee.updateMany(
+    { resumeLink: { $exists: true, $not: { $type: "string" } } },
+    { $set: { resumeLink: "" } },
+    { multi: true }
+  );
+
+  if (alreadyApplied && stringUpdate) {
     // If the job exists, update the uploadedResume property
     const updatedEmp = await Employee.findOneAndUpdate(
       { "appliedJobs._id": appliedJobId },
       {
         $set: {
           "appliedJobs.$.uploadedResume": req.file.filename,
-        },
-        $push: {
           resumeLink: req.file.filename,
         },
       },

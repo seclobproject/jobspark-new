@@ -1,11 +1,12 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import Footer from "../Components/Footer";
 import { useAppDispatch, useAppSelector } from "../store";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { uploadResume } from "../Slice/employeeSlice";
 
 const ResumeScreen: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const { pending, data, error } = useAppSelector(
     (state: any) => state.uploadResumeReducer
@@ -17,6 +18,10 @@ const ResumeScreen: React.FC = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    if (data) {
+      navigate("/personal-details");
+    }
   }, [dispatch, pending, data, error]);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
