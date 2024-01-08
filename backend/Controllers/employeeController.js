@@ -147,46 +147,61 @@ export const uploadResume = asyncHandler(async (req, res) => {
     res.status(400).json({ message: "No file uploaded" });
   }
 
-  // const filePath = req.file.path;
-
   const employee = await Employee.findOne({ email: userEmail });
 
-  if (employee) {
-    let alreadyApplied = false;
-    // const jobApplying = await Job.findById(appliedJobId);
+  let alreadyApplied = false;
 
-    // Check if the employee has already applied for this job
-    employee.appliedJobs.forEach((job) => {
-      if (job._id == appliedJobId) {
-        alreadyApplied = true;
-        return;
-      }
-    });
+  // Check if the employee has already applied for this job
+  employee.appliedJobs.forEach((job) => {
+    if (job._id == appliedJobId) {
+      alreadyApplied = true;
+      return;
+    }
+  });
 
-    if (alreadyApplied) {
-      return res.status(401).json({
-        sts: "00",
-        msg: "You already applied for this job",
+  const stringUpdate = await Employee.updateMany(
+    { resumeLink: { $exists: true, $not: { $type: "string" } } },
+    { $set: { resumeLink: "" } },
+    { multi: true }
+  );
+
+  if (alreadyApplied && stringUpdate) {
+    // If the job exists, update the uploadedResume property
+    const updatedEmp = await Employee.findOneAndUpdate(
+      { "appliedJobs._id": appliedJobId },
+      {
+        $set: {
+          "appliedJobs.$.uploadedResume": req.file.filename,
+          resumeLink: req.file.filename,
+        },
+      },
+      { new: true }
+    );
+
+    if (updatedEmp) {
+      res.status(201).json({
+        sts: "01",
+        msg: "Success",
       });
-    } else {
-      employee.appliedJobs.push({
-        _id: appliedJobId,
-        uploadedResume: req.file.filename,
+    }
+  } else {
+    // If the job does not exist, push a new object to the array
+    const updatedEmp = await Employee.findOneAndUpdate(
+      {},
+      {
+        $push: {
+          appliedJobs: { _id: appliedJobId, uploadedResume: req.file.filename },
+          resumeLink: req.file.filename,
+        },
+      },
+      { new: true }
+    );
+
+    if (updatedEmp) {
+      res.status(201).json({
+        sts: "01",
+        msg: "Success",
       });
-
-      const updatedEmp = await employee.save();
-
-      if (updatedEmp) {
-        return res.status(201).json({
-          sts: "01",
-          msg: "Resume uploaded successfully!",
-        });
-      } else {
-        return res.status(400).json({
-          sts: "00",
-          msg: "Some error occured. Please try again!",
-        });
-      }
     }
   }
 });

@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { fetchUserReducer, uploadResumeReducer } from "./Slice/userSlice";
+import { fetchUserReducer } from "./Slice/userSlice";
+import { uploadResumeReducer } from "./Slice/employeeSlice";
 import { getRecommendedJobsReducer, getSingleJobDetailsReducer } from "./Slice/jobSlice";
 
 import { TypedUseSelectorHook, useDispatch } from "react-redux";

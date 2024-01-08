@@ -1,20 +1,27 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import Footer from "../Components/Footer";
 import { useAppDispatch, useAppSelector } from "../store";
-import { useParams } from "react-router-dom";
-import { uploadResume } from "../Slice/userSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { uploadResume } from "../Slice/employeeSlice";
 
 const ResumeScreen: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { jobId: appliedJobId } = useParams();
-  const [file, setFile] = useState<File | null>(null);
+  const navigate = useNavigate();
 
   const { pending, data, error } = useAppSelector(
-    (state: any) => state.getSingleJobDetailsReducer
+    (state: any) => state.uploadResumeReducer
   );
+
+  const { jobId: appliedJobId } = useParams();
+  const [file, setFile] = useState<File | null>(null);
+  const [fileError, setFileError] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    if (data) {
+      navigate("/personal-details");
+    }
   }, [dispatch, pending, data, error]);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +32,11 @@ const ResumeScreen: React.FC = () => {
 
   const handleFileUpload = (e: any) => {
     e.preventDefault();
+    if (!file) {
+      setFileError(true);
+      return;
+    }
+
     dispatch(uploadResume({ file, appliedJobId }));
   };
 
@@ -70,15 +82,20 @@ const ResumeScreen: React.FC = () => {
         </div>
 
         <div className="resume-page-bottom-btns">
-          <button>Buid a Resume</button>
+          <button>Build a Resume</button>
           <button onClick={handleFileUpload}>
-            {pending == true
-              ? `Uploading`
-              : data
-              ? `Uploaded`
-              : error == true
-              ? `Some error occured`
-              : `Next`}
+            {pending == true ? (
+              <span className="inline-flex items-center">
+                <span className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white-800"></span>
+                <span className="ml-2">Uploading...</span>
+              </span>
+            ) : data ? (
+              `Uploaded`
+            ) : error == true ? (
+              `Some error occured. Please try again!`
+            ) : (
+              `Next`
+            )}
           </button>
         </div>
       </div>
